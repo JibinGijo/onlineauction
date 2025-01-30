@@ -3,30 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Auction Platform</title>
+    <title>Auction Detail</title>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to the Online Auction Platform</h1>
+        <h1>Auction Details</h1>
         <nav>
             <a href="index.html">Home</a>
-            <a href="auction-detail.html">Auction Details</a>
         </nav>
     </header>
     <main>
-        <div id="auction-list">
-            <h2>Available Auctions</h2>
-            <ul>
-                <li><a href="auction-detail.html">Auction 1</a></li>
-                <li><a href="auction-detail.html">Auction 2</a></li>
-                <li><a href="auction-detail.html">Auction 3</a></li>
-            </ul>
+        <div id="auction-detail">
+            <h2 id="auction-title">Auction Title</h2>
+            <p id="auction-description">Auction Description</p>
+            <p>Current Bid: $<span id="current-bid">0</span></p>
+            <button onclick="placeBid()">Place Bid</button>
         </div>
     </main>
     <footer>
         <p>© 2025 Online Auction Platform</p>
     </footer>
-    <script src="scripts/index.js"></script>
+    <script src="scripts/auction.js"></script>
 </body>
 </html>
