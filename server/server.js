@@ -1,6 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+const path = require("path");
 
 const app = express();
 const port = 3000;
@@ -9,12 +10,12 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, "../public")));
+
 // Routes
 const authRoutes = require("./routes/authRoutes");
-const auctionRoutes = require("./routes/auctionRoutes");
-
 app.use("/auth", authRoutes);
-app.use("/auctions", auctionRoutes);
 
 // Start the server
 app.listen(port, () => {
