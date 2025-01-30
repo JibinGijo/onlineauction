@@ -4,47 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Auction Platform</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
   <header>
     <h1>Online Auction Platform</h1>
     <nav>
-      <a href="#home">Home</a>
-      <a href="#auctions">Auctions</a>
-      <a href="#profile">Profile</a>
-      <button id="loginBtn">Login</button>
-      <button id="registerBtn">Register</button>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="dashboard.html">Dashboard</a>
     </nav>
   </header>
 
   <main>
-    <section id="home">
+    <section id="featured-auctions">
       <h2>Featured Auctions</h2>
-      <div id="auction-list">
+      <div id="auction-list" class="auction-list">
         <!-- Auction items will be dynamically added here -->
-      </div>
-    </section>
-
-    <section id="auctions">
-      <h2>All Auctions</h2>
-      <div id="all-auctions">
-        <!-- All auction items will be dynamically added here -->
-      </div>
-    </section>
-
-    <section id="profile">
-      <h2>User Profile</h2>
-      <div id="user-info">
-        <!-- User info will be dynamically added here -->
       </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Online Auction Platform</p>
+    <p>&copy; 2023 Online Auction Platform</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="scripts/api.js"></script>
+  <script src="scripts/auction.js"></script>
 </body>
 </html>

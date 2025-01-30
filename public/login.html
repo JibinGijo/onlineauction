@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Online Auction Platform</title>
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Login to Your Account</h1>
-        <nav>
-            <a href="index.html">Home</a>
-        </nav>
-    </header>
-    <main>
-        <form id="login-form">
-            <h2>Login</h2>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Login</button>
-        </form>
-        <hr>
-        <form id="register-form">
-            <h2>Register</h2>
-            <label for="reg-email">Email:</label>
-            <input type="email" id="reg-email" name="reg-email" required>
-            <label for="reg-password">Password:</label>
-            <input type="password" id="reg-password" name="reg-password" required>
-            <button type="submit">Register</button>
-        </form>
-    </main>
-    <footer>
-        <p>© 2025 Online Auction Platform</p>
-    </footer>
-    <script src="scripts/auth.js"></script>
+  <header>
+    <h1>Online Auction Platform</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="login">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a href="register.html">Register</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Online Auction Platform</p>
+  </footer>
+
+  <script src="scripts/auth.js"></script>
 </body>
 </html>
