@@ -3,29 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Dashboard</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="login.html">Logout</a>
-        </nav>
+    <header class="bg-dark text-white p-3">
+        <div class="container">
+            <h1 class="h3">Admin Dashboard</h1>
+            <nav class="nav">
+                <a class="nav-link text-white" href="index.html">Home</a>
+                <a class="nav-link text-white" href="login.html">Logout</a>
+            </nav>
+        </div>
     </header>
-    <main>
+    <main class="container mt-4">
         <section>
-            <h2>Your Auctions</h2>
-            <div id="user-auctions">
-                <!-- Seller's auctions injected here -->
+            <h2>Manage Auctions</h2>
+            <div id="admin-auctions" class="row">
+                <!-- Admin's auctions injected here -->
             </div>
-            <button onclick="createAuction()">Create New Auction</button>
+            <button class="btn btn-primary mt-3" onclick="createAuction()">Create New Auction</button>
         </section>
     </main>
-    <footer>
+    <footer class="bg-dark text-white text-center p-3 mt-4">
         <p>© 2025 Online Auction Platform</p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="scripts/dashboard.js"></script>
+    <script type="module">
+        import { checkAdmin } from './scripts/auth.js';
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const isAdmin = await checkAdmin();
+            if (!isAdmin) {
+                alert("Access denied. Admins only.");
+                window.location.href = "index.html";
+            }
+            // Fetch and display admin auctions
+            fetchAdminAuctions();
+        });
+
+        async function fetchAdminAuctions() {
+            const response = await fetch("/auctions");
+            const auctions = await response.json();
+            const adminAuctions = document.getElementById("admin-auctions");
+            auctions.forEach(auction => {
+                const auctionItem = document.createElement("div");
+                auctionItem.className = "col-md-4 mb-4";
+                auctionItem.innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${auction.title}</h5>
+                            <p class="card-text">${auction.description}</p>
+                            <p class="card-text">Current Bid: $${auction.currentBid}</p>
+                            <button class="btn btn-primary" onclick="updateAuction(${auction.id})">Update Auction</button>
+                        </div>
+                    </div>
+                `;
+                adminAuctions.appendChild(auctionItem);
+            });
+        }
+
+        function createAuction() {
+            // Implement create auction functionality
+        }
+
+        function updateAuction(auctionId) {
+            // Implement update auction functionality
+        }
+    </script>
 </body>
 </html>

@@ -4,32 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Auction Platform</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-  <header>
-    <h1>Online Auction Platform</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="login.html">Login</a>
-      <a href="dashboard.html">Dashboard</a>
-    </nav>
+  <header class="bg-dark text-white p-3">
+    <div class="container">
+      <h1 class="h3">Online Auction Platform</h1>
+      <nav class="nav">
+        <a class="nav-link text-white" href="index.html">Home</a>
+        <a class="nav-link text-white" href="login.html">Login</a>
+        <a id="dashboard-link" class="nav-link text-white" href="dashboard.html" style="display: none;">Dashboard</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section id="featured-auctions">
-      <h2>Featured Auctions</h2>
-      <div id="auction-list" class="auction-list">
-        <!-- Auction items will be dynamically added here -->
+  <main class="container mt-4">
+    <section id="auctions">
+      <h2>Current Auctions</h2>
+      <div id="auction-list" class="row">
+        <!-- Auction items will be injected here -->
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2023 Online Auction Platform</p>
+  <footer class="bg-dark text-white text-center p-3 mt-4">
+    <p>© 2025 Online Auction Platform</p>
   </footer>
 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="scripts/api.js"></script>
   <script src="scripts/auction.js"></script>
+  <script type="module">
+    import { checkAdmin } from './scripts/auth.js';
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        const isAdmin = await checkAdmin();
+        if (isAdmin) {
+            document.getElementById("dashboard-link").style.display = "block";
+        }
+        // Fetch and display auctions
+        fetchAuctions();
+    });
+
+    async function fetchAuctions() {
+        const response = await fetch("/auctions");
+        const auctions = await response.json();
+        const auctionList = document.getElementById("auction-list");
+        auctions.forEach(auction => {
+            const auctionItem = document.createElement("div");
+            auctionItem.className = "col-md-4 mb-4";
+            auctionItem.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${auction.title}</h5>
+                        <p class="card-text">${auction.description}</p>
+                        <p class="card-text">Current Bid: $${auction.currentBid}</p>
+                        <button class="btn btn-primary" onclick="placeBid(${auction.id})">Place Bid</button>
+                    </div>
+                </div>
+            `;
+            auctionList.appendChild(auctionItem);
+        });
+    }
+
+    function placeBid(auctionId) {
+        // Implement place bid functionality
+    }
+  </script>
 </body>
 </html>
