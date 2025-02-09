@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BidHub - Online Auction Platform</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <img src="/images/logo.png" alt="BidHub Logo">
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for items...">
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <nav class="user-nav">
+                    <a href="/auctions/create" class="btn btn-primary">Sell Item</a>
+                    <a href="/profile" class="user-profile">
+                        <img src="/images/placeholder.jpg" alt="Profile">
+                        <span>My Account</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/categories/electronics">Electronics</a></li>
+                        <li><a href="/categories/fashion">Fashion</a></li>
+                        <li><a href="/categories/home">Home & Garden</a></li>
+                        <li><a href="/categories/sports">Sports</a></li>
+                        <li><a href="/categories/collectibles">Collectibles</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Discover Unique Items at Great Prices</h1>
+                    <p>Join thousands of users buying and selling on BidHub</p>
+                    <a href="/auctions" class="btn btn-large">Start Bidding</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-auctions">
+            <div class="container">
+                <h2>Featured Auctions</h2>
+                <div class="auction-grid" id="featuredAuctions">
+                    <!-- Auction cards will be inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="container">
+                <h2>Popular Categories</h2>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <img src="/images/electronics.jpg" alt="Electronics">
+                        <h3>Electronics</h3>
+                    </div>
+                    <!-- More category cards -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>About BidHub</h4>
+                    <ul>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="/press">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="/help">Help Center</a></li>
+                        <li><a href="/safety">Safety Center</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- More footer sections -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/main.js"></script>
+    <script src="https://kit.fontawesome.com/your-kit-code.js"></script>
+</body>
+</html> 

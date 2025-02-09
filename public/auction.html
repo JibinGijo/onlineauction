@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction Item - Bid Bazaar</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <h1>Bid<span>Bazaar</span></h1>
+        </div>
+        <nav class="main-nav">
+            <a href="/">Home</a>
+            <a href="/categories">Categories</a>
+            <a href="/register.html" class="register-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                Register
+            </a>
+            <a href="/login.html" class="login-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                    <polyline points="10 17 15 12 10 7"/>
+                    <line x1="15" y1="12" x2="3" y2="12"/>
+                </svg>
+                Login
+            </a>
+        </nav>
+    </header>
+
+    <main class="auction-page">
+        <div class="auction-container">
+            <div class="auction-details">
+                <div class="auction-image">
+                    <img src="" alt="Auction Item" id="auctionImage">
+                </div>
+                <div class="auction-info">
+                    <div class="category">Category: <span id="category"></span></div>
+                    <h1 id="auctionTitle"></h1>
+                    
+                    <div class="item-description">
+                        <h2>Item Description</h2>
+                        <p id="description"></p>
+                    </div>
+
+                    <div class="owner-info">
+                        <h3>Owner: <span id="owner"></span></h3>
+                    </div>
+
+                    <div class="price-info">
+                        <div class="initial-price">
+                            Initial Price
+                            <span id="initialPrice"></span>
+                        </div>
+                        <div class="current-price">
+                            Current Price
+                            <span id="currentPrice"></span>
+                        </div>
+                    </div>
+
+                    <div class="highest-bidder">
+                        Current Highest Bidder: <span id="highestBidder"></span>
+                    </div>
+
+                    <div id="bidSection" class="bid-section">
+                        <p class="login-message">Please login To place a bid</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        .auction-page {
+            background: #1a1f2e;
+            min-height: calc(100vh - 70px);
+            padding: 2rem;
+        }
+
+        .auction-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .auction-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .auction-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .auction-info {
+            color: #fff;
+        }
+
+        .category {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .auction-info h1 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .item-description {
+            margin-bottom: 2rem;
+        }
+
+        .item-description h2 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .item-description p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .owner-info {
+            margin-bottom: 2rem;
+            color: #94a3b8;
+        }
+
+        .price-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .initial-price, .current-price {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .initial-price span, .current-price span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .initial-price span {
+            color: #22d3ee;
+        }
+
+        .current-price span {
+            color: #a855f7;
+        }
+
+        .highest-bidder {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .bid-section {
+            text-align: center;
+        }
+
+        .login-message {
+            color: #94a3b8;
+        }
+
+        @media (max-width: 768px) {
+            .auction-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('bidUpdate', (data) => {
+            // Update the UI with the new bid data
+            console.log('New bid:', data);
+        });
+
+        function placeBid(bidAmount) {
+            socket.emit('bid', { amount: bidAmount });
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Get auction ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const auctionId = urlParams.get('id');
+
+            try {
+                const response = await fetch(`/auctions/${auctionId}`);
+                const auction = await response.json();
+
+                // Update the UI with auction details
+                document.getElementById('auctionImage').src = auction.image_urls?.[0] || 'images/placeholder.jpg';
+                document.getElementById('category').textContent = auction.categories?.[0]?.name || 'Uncategorized';
+                document.getElementById('auctionTitle').textContent = auction.title;
+                document.getElementById('description').textContent = auction.description;
+                document.getElementById('owner').textContent = auction.owner;
+                document.getElementById('initialPrice').textContent = `₹${auction.starting_price}`;
+                document.getElementById('currentPrice').textContent = `₹${auction.current_price}`;
+                document.getElementById('highestBidder').textContent = auction.highest_bidder || 'No bids yet';
+
+                // Check if user is logged in
+                const token = localStorage.getItem('token');
+                if (token) {
+                    document.getElementById('bidSection').innerHTML = `
+                        <button class="btn btn-primary">Place Bid</button>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading auction:', error);
+            }
+        });
+    </script>
+</body>
+</html> 

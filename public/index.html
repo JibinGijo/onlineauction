@@ -1,78 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Auction Platform</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BidBazaar - Online Auction Platform</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-  <header class="bg-dark text-white p-3">
-    <div class="container">
-      <h1 class="h3">Online Auction Platform</h1>
-      <nav class="nav">
-        <a class="nav-link text-white" href="index.html">Home</a>
-        <a class="nav-link text-white" href="login.html">Login</a>
-        <a id="dashboard-link" class="nav-link text-white" href="dashboard.html" style="display: none;">Dashboard</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <a href="/">
+                    <h1>Bid<span>Bazaar</span></h1>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/categories" class="nav-link">Categories</a>
+                <a href="/register" class="nav-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    Register
+                </a>
+                <a href="/login" class="nav-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                        <polyline points="10 17 15 12 10 7"/>
+                        <line x1="15" y1="12" x2="3" y2="12"/>
+                    </svg>
+                    Login
+                </a>
+            </div>
+        </div>
+    </nav>
 
-  <main class="container mt-4">
-    <section id="auctions">
-      <h2>Current Auctions</h2>
-      <div id="auction-list" class="row">
-        <!-- Auction items will be injected here -->
-      </div>
-    </section>
-  </main>
-
-  <footer class="bg-dark text-white text-center p-3 mt-4">
-    <p>© 2025 Online Auction Platform</p>
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="scripts/api.js"></script>
-  <script src="scripts/auction.js"></script>
-  <script type="module">
-    import { checkAdmin } from './scripts/auth.js';
-
-    document.addEventListener("DOMContentLoaded", async () => {
-        const isAdmin = await checkAdmin();
-        if (isAdmin) {
-            document.getElementById("dashboard-link").style.display = "block";
-        }
-        // Fetch and display auctions
-        fetchAuctions();
-    });
-
-    async function fetchAuctions() {
-        const response = await fetch("/auctions");
-        const auctions = await response.json();
-        const auctionList = document.getElementById("auction-list");
-        auctions.forEach(auction => {
-            const auctionItem = document.createElement("div");
-            auctionItem.className = "col-md-4 mb-4";
-            auctionItem.innerHTML = `
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">${auction.title}</h5>
-                        <p class="card-text">${auction.description}</p>
-                        <p class="card-text">Current Bid: $${auction.currentBid}</p>
-                        <button class="btn btn-primary" onclick="placeBid(${auction.id})">Place Bid</button>
-                    </div>
+    <!-- Main Content -->
+    <main>
+        <section class="hero">
+            <h1>Welcome to Bid Bazaar</h1>
+            <div class="content-grid">
+                <div class="content-left">
+                    <h2>Your Premier Online Auction Destination</h2>
+                    <p>Dive into a world of endless possibilities as you browse through our curated selection of unique items, rare collectibles, and sought-after treasures. Whether you're a seasoned collector hunting for that elusive gem or a bargain hunter seeking unbeatable deals, Bid Bazaar has something for everyone.</p>
                 </div>
-            `;
-            auctionList.appendChild(auctionItem);
-        });
-    }
 
-    function placeBid(auctionId) {
-        // Implement place bid functionality
-    }
-  </script>
+                <div class="content-right">
+                    <h2>Explore Our Auctions</h2>
+                    <p>Discover a diverse array of auctions featuring everything from vintage artifacts and exclusive memorabilia to cutting-edge tech gadgets and luxury goods. With new items added regularly, there's always something exciting to bid on at Bid Bazaar. Our user-friendly platform makes it easy to navigate, place bids, and track your favorite items, ensuring a seamless and enjoyable auction experience.</p>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-left">
+                    <h2>Bid with Confidence</h2>
+                    <p>At Bid Bazaar, we prioritize transparency, integrity, and security. Each item in our auctions is meticulously verified for authenticity, so you can bid with confidence knowing that you're getting the real deal. Our robust bidding system ensures fair and competitive auctions, giving everyone an equal chance to win their desired items at the best possible prices.</p>
+                </div>
+
+                <div class="content-right">
+                    <h2>Sell Your Treasures</h2>
+                    <p>Got items gathering dust in your attic or closet? Turn your clutter into cash by selling on Bid Bazaar. Our seller-friendly platform makes it simple to list your items, attract potential buyers, and close lucrative deals. Join our community of sellers and start monetizing your treasures today.</p>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="/login" class="btn btn-primary">LOGIN</a>
+                <a href="/register" class="btn btn-secondary">REGISTER</a>
+            </div>
+        </section>
+    </main>
+
+    <style>
+        :root {
+            --primary-color: #326789;
+            --secondary-color: #E65C4F;
+            --text-color: #f8f9fa;
+            --background-color: #1a1f2e;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: #f0f2f5;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #1a1f2e;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #1a1f2e;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        main {
+            padding-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .content-left h2,
+        .content-right h2 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .content-left p,
+        .content-right p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 3rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background-color: #00D5FF;
+            color: #1a1f2e;
+        }
+
+        .btn-secondary {
+            background-color: #B666D2;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+
+    <script src="/scripts/main.js"></script>
 </body>
 </html>

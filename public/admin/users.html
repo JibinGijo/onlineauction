@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - BidBazaar Admin</title>
+    <link rel="stylesheet" href="/styles/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1>Admin Dashboard</h1>
+            
+            <div class="logo">
+                <img src="/images/logo.png" alt="Bid Bazaar" class="logo-img">
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="/admin/users" class="nav-item active">Manage Users</a>
+                <a href="/admin/listings" class="nav-item">Manage Listings</a>
+                <a href="/admin/reports" class="nav-item">Reports</a>
+                <a href="/auth/logout" class="nav-item logout">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Manage Users</h1>
+            </header>
+
+            <div class="users-table-container">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Profile</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Users will be loaded here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="/scripts/admin-users.js"></script>
+</body>
+</html> 

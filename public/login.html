@@ -3,53 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Online Auction Platform</title>
+  <title>Login - BidBazaar</title>
   <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/auth.css">
 </head>
 <body>
-  <header>
-    <h1>Online Auction Platform</h1>
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo">
+      <a href="/">
+        <img src="images/logo.png" alt="BidBazaar">
+      </a>
+    </div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="login.html">Login</a>
-      <a href="dashboard.html">Dashboard</a>
+      <a href="/">Home</a>
+      <a href="/categories">Categories</a>
+      <a href="/register" class="nav-icon">
+        <img src="images/register-icon.svg" alt="">
+        Register
+      </a>
+      <a href="/login" class="nav-icon active">
+        <img src="images/login-icon.svg" alt="">
+        Login
+      </a>
     </nav>
   </header>
 
-  <main>
-    <section id="login">
-      <h2>Login</h2>
-      <form id="login-form">
-        <label for="identifier">Username or Email:</label>
-        <input type="text" id="identifier" name="identifier" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
-      </form>
-      <p>Don't have an account? <a href="register.html">Register</a></p>
-    </section>
-  </main>
+  <div class="page-layout">
+    <!-- Left side -->
+    <div class="content-left">
+      <h1>Bid<span>Bazaar</span></h1>
+      <div class="tagline">
+        <h2>An Auction Platform for</h2>
+        <h2>Collectors</h2>
+      </div>
+    </div>
 
-  <footer>
-    <p>&copy; 2023 Online Auction Platform</p>
-  </footer>
+    <!-- Right side - Login Form -->
+    <div class="content-right">
+      <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="identifier" placeholder="Username" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+          </div>
+
+          <a href="/forgot-password" class="forgot-link">Forgot Password?</a>
+
+          <button type="submit" class="login-btn">Login</button>
+
+          <div class="register-link">
+            <a href="/register">Register Here</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <script src="scripts/auth.js"></script>
-  <script type="module">
-    import { loginUser } from './scripts/api.js';
-
-    document.getElementById("login-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const identifier = document.getElementById("identifier").value;
-      const password = document.getElementById("password").value;
-
-      const result = await loginUser({ identifier, password });
-      if (result.success) {
-        window.location.href = "dashboard.html";
-      } else {
-        alert(result.message);
-      }
-    });
-  </script>
 </body>
 </html>

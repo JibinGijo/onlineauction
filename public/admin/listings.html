@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Listings - BidBazaar Admin</title>
+    <link rel="stylesheet" href="/styles/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1>Admin Dashboard</h1>
+            
+            <div class="logo">
+                <img src="/images/logo.png" alt="Bid Bazaar" class="logo-img">
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="/admin/users" class="nav-item">Manage Users</a>
+                <a href="/admin/listings" class="nav-item active">Manage Listings</a>
+                <a href="/admin/reports" class="nav-item">Reports</a>
+                <a href="/auth/logout" class="nav-item logout">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Manage Listings</h1>
+                <div class="search-container">
+                    <input type="text" id="searchListings" placeholder="Search listings" class="search-input">
+                    <button class="search-btn">Search</button>
+                </div>
+            </header>
+
+            <div class="listings-container">
+                <div id="listingsGrid" class="listings-grid">
+                    <!-- Listings will be loaded here dynamically -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/scripts/admin-listings.js"></script>
+</body>
+</html> 

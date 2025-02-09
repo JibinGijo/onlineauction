@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing Details - BidBazaar</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/listing.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="/">
+                <img src="/images/logo.png" alt="BidBazaar">
+            </a>
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/categories">Categories</a>
+            <div class="auth-buttons" id="authButtons">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="listing-page">
+        <div class="listing-container">
+            <div class="listing-image">
+                <img id="listingImage" src="" alt="Listing Image">
+            </div>
+            <div class="listing-details">
+                <h1 id="listingTitle"></h1>
+                
+                <div class="item-description">
+                    <h2>Item Description</h2>
+                    <p id="listingDescription"></p>
+                </div>
+
+                <div class="owner-info">
+                    <h3>Owner: <span id="ownerName"></span></h3>
+                </div>
+
+                <div class="price-info">
+                    <div class="price-box">
+                        <h3>Initial Price</h3>
+                        <p id="initialPrice">₹0</p>
+                    </div>
+                    <div class="price-box">
+                        <h3>Current Price</h3>
+                        <p id="currentPrice">₹0</p>
+                    </div>
+                </div>
+
+                <div class="bidder-info">
+                    <h3>Current Highest Bidder: <span id="highestBidder"></span></h3>
+                </div>
+
+                <div id="bidSection" class="bid-section">
+                    <!-- Will show login message or bid form based on auth status -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/scripts/listing.js"></script>
+</body>
+</html> 

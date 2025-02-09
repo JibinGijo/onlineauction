@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <header>
+    <!-- ...existing code... -->
+  </header>
+  <main>
+    <section id="profile-section" style="display: none;">
+      <h2>Update Profile</h2>
+      <form id="update-profile-form">
+        <label for="new-email">New Email:</label>
+        <input type="email" id="new-email" name="new-email">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <label for="mobile">Mobile:</label>
+        <input type="text" id="mobile" name="mobile">
+        <button type="submit">Update</button>
+      </form>
+    </section>
+    <section id="past-sales-section" style="display: none;">
+      <h2>Past Sales</h2>
+      <div id="past-sales">
+        <!-- Past sales will be displayed here -->
+      </div>
+    </section>
+    <section id="bought-items-section" style="display: none;">
+      <h2>Bought Items</h2>
+      <div id="bought-items">
+        <!-- Bought items will be displayed here -->
+      </div>
+    </section>
+  </main>
+  <footer>
+    <!-- ...existing code... -->
+  </footer>
+  <script src="scripts/user.js"></script>
+</body>
+</html>

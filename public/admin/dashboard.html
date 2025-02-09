@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BidBazaar</title>
+    <link rel="stylesheet" href="/styles/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1>Admin Dashboard</h1>
+            
+            <div class="logo">
+                <img src="/images/logo.png" alt="BidBazaar" class="logo-img">
+                <h2>Bid<span>Bazaar</span></h2>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="/admin/dashboard/manage-users" class="nav-item">Manage Users</a>
+                <a href="/admin/dashboard/manage-listings" class="nav-item">Manage Listings</a>
+                <a href="/admin/dashboard/reports" class="nav-item">Reports</a>
+                <a href="/auth/logout" class="nav-item logout">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>BidBazaar Administration</h1>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- Users Section -->
+                <section class="dashboard-section">
+                    <h2>Users</h2>
+                    <div class="card">
+                        <h3>User-wise Listings</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Total Listings</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userListingsTable">
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card">
+                        <h3>User Registration Reports (Last 7 Days)</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Total Registrations</th>
+                                </tr>
+                            </thead>
+                            <tbody id="registrationReportsTable">
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                        <div class="chart" id="registrationChart"></div>
+                    </div>
+                </section>
+
+                <!-- Listings Section -->
+                <section class="dashboard-section">
+                    <h2>Listings</h2>
+                    <div class="card">
+                        <h3>Day-wise Listings</h3>
+                        <div class="chart" id="dayWiseListingsChart"></div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Month-wise Listings</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Total Listings</th>
+                                </tr>
+                            </thead>
+                            <tbody id="monthWiseListingsTable">
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                        <div class="chart" id="monthWiseListingsChart"></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/scripts/admin.js"></script>
+</body>
+</html> 

@@ -1,0 +1,121 @@
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo">
+      <h1>Bid<span>Bazaar</span></h1>
+    </div>
+    <nav class="main-nav">
+      <a href="/" class="active">Home</a>
+      <a href="/categories">Categories</a>
+      <a href="/register.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Register
+      </a>
+      <a href="/login.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+          <polyline points="10 17 15 12 10 7"/>
+          <line x1="15" y1="12" x2="3" y2="12"/>
+        </svg>
+        Login
+      </a>
+      <a href="javascript:void(0)" onclick="logout()" class="logout-btn nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        Logout
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  body {
+    padding-top: 70px; /* Add space for fixed header */
+  }
+
+  .main-header {
+    background: #f8f9fa;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 70px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .logo h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #333;
+  }
+
+  .logo span {
+    color: #E65C4F;
+  }
+
+  .main-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .main-nav a {
+    text-decoration: none;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+
+  .main-nav a.active {
+    color: #333;
+  }
+
+  .nav-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .nav-btn:hover {
+    background-color: rgba(0,0,0,0.05);
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding-top: 60px;
+    }
+    
+    .main-header {
+      height: 60px;
+      padding: 0.5rem 1rem;
+    }
+    
+    .main-nav {
+      gap: 1rem;
+    }
+    
+    .logo h1 {
+      font-size: 1.5rem;
+    }
+  }
+</style> 
